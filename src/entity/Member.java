@@ -5,5 +5,5 @@ import java.util.List;
 public class Member {
     private String id;
     private String password;
-    private List<Integer> bookList:
+    private List<Integer> bookList;
 }
