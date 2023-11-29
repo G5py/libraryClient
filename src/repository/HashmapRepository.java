@@ -8,14 +8,8 @@ import java.util.List;
 public class HashmapRepository<K, T> implements Repository<K, T> {
     protected HashMap<K, T> hashMap;
     @Override
-    public boolean save(K key, T entity) {
-        T put = hashMap.put(key, entity);
-
-        if (put == null) {
-            return false;
-        }
-
-        return true;
+    public T save(K key, T entity) {
+        return hashMap.put(key, entity);
     }
 
     @Override
