@@ -1,3 +1,5 @@
+// 작성자 : 김상규
+
 package dto;
 
 import entity.Book;

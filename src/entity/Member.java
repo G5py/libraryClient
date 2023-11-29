@@ -1,3 +1,5 @@
+// 작성자 : 김상규, 최연호
+
 package entity;
 
 import java.util.List;
