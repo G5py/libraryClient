@@ -5,6 +5,7 @@ package applicationLogic;
 import dto.BorrowedBooks;
 import entity.Book;
 import repository.BookHashmapRepository;
+import repository.BookRequestRepository;
 import repository.MemberHashmapRepository;
 import repository.RepositoryManager;
 
@@ -18,9 +19,10 @@ public class BorrowedBookSearcher {
     public BorrowedBookSearcher() {
         this.bookRepository   = RepositoryManager.getBookHashmapRepository();
         this.memberRepository = RepositoryManager.getMemberHashmapRepository();
+
     }
 
-    public BorrowedBooks search(Integer id) {
+    public BorrowedBooks search(String id) {
         List<Book> books = memberRepository.findByKey(id)
                 .getBookList().stream()
                 .map(bookRepository::findByKey)

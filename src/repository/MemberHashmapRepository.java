@@ -4,6 +4,9 @@ package repository;
 
 import entity.Member;
 
-public class MemberHashmapRepository extends HashmapRepository<Integer, Member>{
+import java.util.List;
+
+public class MemberHashmapRepository extends HashmapRepository<String, Member>{
+
 
 }

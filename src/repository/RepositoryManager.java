@@ -7,7 +7,7 @@ package repository;
 public class RepositoryManager {
     private static BookHashmapRepository   bookRepository   = new BookHashmapRepository();
     private static MemberHashmapRepository memberRepository = new MemberHashmapRepository();
-
+    private static BookRequestRepository bookRequestRepository= new BookRequestRepository();
 
     public static BookHashmapRepository getBookHashmapRepository() {
         return bookRepository;
@@ -16,5 +16,5 @@ public class RepositoryManager {
     public static MemberHashmapRepository getMemberHashmapRepository() {
         return memberRepository;
     }
-
+    public static BookRequestRepository getBookRequestRepository(){ return  bookRequestRepository;}
 }

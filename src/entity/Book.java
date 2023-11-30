@@ -9,11 +9,11 @@ public class Book {
     private String date;
     private int num;
 
-    public Book(String name, String writer, String publisher, String date, int num) {
+    public Book(String name, String writer, String publisher,  int num) {
         this.name      = name;
         this.writer    = writer;
         this.publisher = publisher;
-        this.date      = date;
+
         this.num       = num;
     }
 
@@ -36,4 +36,5 @@ public class Book {
     public int getNum() {
         return num;
     }
+
 }
