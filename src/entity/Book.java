@@ -10,11 +10,11 @@ public class Book {
     private int num;
 
     public Book(String name, String writer, String publisher, String date, int num) {
-        this.name = name;
-        this.writer = writer;
+        this.name      = name;
+        this.writer    = writer;
         this.publisher = publisher;
-        this.date = date;
-        this.num = num;
+        this.date      = date;
+        this.num       = num;
     }
 
     public String getName() {
