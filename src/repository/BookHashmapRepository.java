@@ -20,7 +20,6 @@ public class BookHashmapRepository extends HashmapRepository<Integer, Book> {
     public void init(){
         for(int i=0;i<10;i++){
             Book book=new Book(name.get(i),writer.get(i),publisher.get(i), i);
-
             hashMap.put(i,book);
         }
 
