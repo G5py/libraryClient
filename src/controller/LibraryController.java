@@ -78,7 +78,7 @@ public class LibraryController {
         int bookId;
         String name, writer, publisher;
         NonEditableModel model = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
-        /*BookSearcher bookSearcher = new BookSearcher();
+        BookSearcher bookSearcher = new BookSearcher();
         SearchedBooks searchedBooks = bookSearcher.search(bookName);
         List<Book> bookList = searchedBooks.getBooks();
         for (Book book : bookList) {
@@ -88,16 +88,16 @@ public class LibraryController {
             publisher = book.getPublisher();
             String bookIdString = String.valueOf(bookId);
             model.addRow(new Object[]{bookIdString, name, writer, publisher});
-        }*/
+        }
         //가져온 BookRepository 데이터에서 도서명으로 검색하는 기능 구현
         //UI에선 위의 boolean 메서드로 검색한 책이 존재하는지 미리 판별 후, 존재한다면 이 메서드 실행
         //name으로 받아온 값을 기반으로 검색 수행, 일치하는 행이 있으면 searchModel.add로 위와 같이 row 추가
         //아래는 샘플데이터로 구현 완료되면 제거
-        model.addRow(new Object[]{"978-1-118-95119-2", "Beginning Java 8 Fundamentals", "Kishori Sharan", "Wrox"});
-        model.addRow(new Object[]{"978-0-13-468599-1", "Effective Java", "Joshua Bloch", "Addison-Wesley"});
-        model.addRow(new Object[]{"978-0-59-600920-5", "Head First Java", "Kathy Sierra & Bert Bates", "O'Reilly Media"});
-        model.addRow(new Object[]{"978-0-13-235088-4", "Clean Code", "Robert C. Martin", "Prentice Hall"});
-        model.addRow(new Object[]{"978-1-491-94765-0", "Java Concurrency in Practice", "Brian Goetz", "Addison-Wesley"});
+        //model.addRow(new Object[]{"978-1-118-95119-2", "Beginning Java 8 Fundamentals", "Kishori Sharan", "Wrox"});
+        //model.addRow(new Object[]{"978-0-13-468599-1", "Effective Java", "Joshua Bloch", "Addison-Wesley"});
+        //model.addRow(new Object[]{"978-0-59-600920-5", "Head First Java", "Kathy Sierra & Bert Bates", "O'Reilly Media"});
+        //model.addRow(new Object[]{"978-0-13-235088-4", "Clean Code", "Robert C. Martin", "Prentice Hall"});
+        //model.addRow(new Object[]{"978-1-491-94765-0", "Java Concurrency in Practice", "Brian Goetz", "Addison-Wesley"});
         return model;
     }
 

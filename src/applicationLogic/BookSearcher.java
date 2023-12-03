@@ -20,8 +20,7 @@ public class BookSearcher
     }
 
     public SearchedBooks search(String name) {
-        List<Book> books = null;
-
+        List<Book> books = bookRepository.findByName(name);
         return new SearchedBooks(books);
 
     }
