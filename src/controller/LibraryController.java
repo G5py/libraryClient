@@ -15,7 +15,7 @@ public class LibraryController {
     }
     public boolean login(String id, String pw) {
         LoginManager loginManager = new LoginManager();
-        boolean isLoginSuccess = true;
+        boolean isLoginSuccess = loginManager.login(id,pw);
         //login 성공 or 실패에 대한 내부 로직, String id,pw를 사용
         //login에 성공한다면 isLoginSuccess에 true를, 실패한다면 false를 대입
         if(isLoginSuccess==true)
@@ -27,7 +27,7 @@ public class LibraryController {
 
     public int register(String id, String pw) {
         RegistrationManager registrationManager = new RegistrationManager();
-        int isRegisterSuccess = 0;
+        int isRegisterSuccess = registrationManager.register(id,pw);
         //register 성공 or 실패에 대한 내부 로직, String id,pw를 사용
         //id, pw가 이미 존재하는지 체크해주고 존재하지 않는다면 0, 존재한다면 1을 isRegisterSuccess에 대입
         //추가적으로 id와 pw가 같다거나, 입력한 문자가 너무 길다거나하는 상황이 있을 수 있어서 int로 해둠
