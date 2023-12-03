@@ -76,13 +76,16 @@ public class LibraryCli extends JFrame {
         cardPanel.add(requestPanel, "Request");
 
         // 버튼 이벤트 리스너
+        //로그인 필요 없는 기능
         loginButton.addActionListener(e -> cardLayout.show(cardPanel, "Login"));
         registerButton.addActionListener(e -> cardLayout.show(cardPanel, "Register"));
         searchButton.addActionListener(e -> cardLayout.show(cardPanel, "Search"));
-        borrowButton.addActionListener(e -> cardLayout.show(cardPanel, "Borrow"));
-        returnButton.addActionListener(e -> cardLayout.show(cardPanel, "Return"));
-        checkoutButton.addActionListener(e -> cardLayout.show(cardPanel, "CheckOut"));
-        requestButton.addActionListener(e -> cardLayout.show(cardPanel, "Request"));
+
+        //로그인이 필요한 기능
+        addLoginButton(borrowButton, "Borrow");
+        addLoginButton(returnButton, "Return");
+        addLoginButton(checkoutButton, "CheckOut");
+        addLoginButton(requestButton, "Request");
 
         add(cardPanel);
         setVisible(true);
@@ -96,11 +99,11 @@ public class LibraryCli extends JFrame {
 
         // 로그인 타이틀
         JLabel titleLabel = new JLabel("Sign In", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         loginPanel.add(titleLabel, BorderLayout.NORTH);
 
         // ID와 Password 입력 필드
-        JPanel fieldsPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        JPanel fieldsPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         JLabel idLabel = new JLabel("ID:");
         JTextField idField = new JTextField();
         JLabel passwordLabel = new JLabel("Password:");
@@ -113,8 +116,8 @@ public class LibraryCli extends JFrame {
 
         // 로그인 및 취소 버튼
         JPanel buttonsPanel = new JPanel(new FlowLayout());
-        JButton loginButton = new JButton("Login");
-        JButton cancelButton = new JButton("Cancel");
+        JButton loginButton = new JButton("로그인");
+        JButton cancelButton = new JButton("취소");
         buttonsPanel.add(loginButton);
         buttonsPanel.add(cancelButton);
         loginPanel.add(buttonsPanel, BorderLayout.SOUTH);
@@ -147,11 +150,11 @@ public class LibraryCli extends JFrame {
 
         // 로그인 타이틀
         JLabel titleLabel = new JLabel("Sign Up", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         registerPanel.add(titleLabel, BorderLayout.NORTH);
 
         // ID와 Password 입력 필드
-        JPanel fieldsPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        JPanel fieldsPanel = new JPanel(new GridLayout(2, 2, 10, 10));
         JLabel idLabel = new JLabel("ID:");
         JTextField idField = new JTextField();
         JLabel passwordLabel = new JLabel("Password:");
@@ -164,8 +167,8 @@ public class LibraryCli extends JFrame {
 
         // 회원가입 및 취소 버튼
         JPanel buttonsPanel = new JPanel(new FlowLayout());
-        JButton registerButton = new JButton("Register");
-        JButton cancelButton = new JButton("Cancel");
+        JButton registerButton = new JButton("회원가입");
+        JButton cancelButton = new JButton("취소");
         buttonsPanel.add(registerButton);
         buttonsPanel.add(cancelButton);
         registerPanel.add(buttonsPanel, BorderLayout.SOUTH);
@@ -184,7 +187,6 @@ public class LibraryCli extends JFrame {
                     JOptionPane.showMessageDialog(this, "The same ID or Password exists!");
                     break;
                 default:
-                    // 다른 경우에 대한 처리 (optional)
                     break;
             }
 
@@ -219,8 +221,7 @@ public class LibraryCli extends JFrame {
         JButton searchButton = new JButton("검색");
         JButton cancelButton = new JButton("취소");
 
-        //DefaultTableModel model = new DefaultTableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
-        JTable table = new JTable(controller.addBookData());
+        JTable table = new JTable(controller.searchBookByName(""));
         JScrollPane scrollPane = new JScrollPane(table);
 
         // 검색 패널 상단에 라벨, 검색 필드, 검색 버튼, 취소 버튼 추가
@@ -234,9 +235,6 @@ public class LibraryCli extends JFrame {
         // 테이블에 스크롤 패널 추가
         searchPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // 샘플 데이터 추가
-        //addSampleData(model);
-
         // 검색 버튼 이벤트 리스너
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -245,12 +243,12 @@ public class LibraryCli extends JFrame {
                 //입력한 내용이 없을 때
                 if (bookName.equals("")) {
                     //도서 내용 전체 보여주기
-                    table.setModel(controller.addBookData());
+                    table.setModel(controller.searchBookByName(""));
                 }
                 //뭐라도 입력했을 때
                 else {
                     //검색한 책이 있으면 검색한 책의 정보를 보여줌
-                    if (controller.seachedBookExists(bookName)) {
+                    if (controller.searchedBookExists(bookName)) {
                         table.setModel(controller.searchBookByName(bookName));
                     }
                     //없으면 메세지를 보여줌
@@ -295,7 +293,7 @@ public class LibraryCli extends JFrame {
                 //뭐라도 입력했을 때
                 else {
                     //검색한 책이 있으면 검색한 책의 정보를 보여줌
-                    if (controller.seachedBookExists(bookName)) {
+                    if (controller.searchedBookExists(bookName)) {
                         controller.borrowBook(bookName);
                         JOptionPane.showMessageDialog(createSearchPanel(), "Borrowed");
                     }
@@ -316,10 +314,11 @@ public class LibraryCli extends JFrame {
 
     private JPanel createReturnPanel() {
         JPanel returnPanel = new JPanel(new BorderLayout());
+        JButton cancelButton;
         JLabel returnLabel = new JLabel("반납할 도서 입력");
         JTextField returnField = new JTextField(20);
         JButton returnButton = new JButton("반납");
-        JButton cancelButton = new JButton("취소");
+        cancelButton = new JButton("취소");
 
         // 검색 패널 상단에 라벨, 검색 필드, 검색 버튼, 취소 버튼 추가
         JPanel topPanel = new JPanel();
@@ -340,7 +339,7 @@ public class LibraryCli extends JFrame {
                 //뭐라도 입력했을 때
                 else {
                     //검색한 책이 있으면 검색한 책의 정보를 보여줌
-                    if (controller.seachedBookExists(bookName)) {
+                    if (controller.searchedBookExists(bookName)) {
                         controller.returnBook(bookName);
                         JOptionPane.showMessageDialog(createSearchPanel(), "Returned");
                     }
@@ -355,7 +354,6 @@ public class LibraryCli extends JFrame {
         cancelButton.addActionListener(e -> {
             cardLayout.show(cardPanel, "Main Menu"); // 메인 메뉴로 돌아가기
         });
-
         return returnPanel;
     }
 
@@ -444,6 +442,19 @@ public class LibraryCli extends JFrame {
         });
         return requestPanel;
     }
+
+    //로그인 유저만 사용할 수 있는 버튼
+    private void addLoginButton(JButton button, String panelName) {
+        button.addActionListener(e -> {
+            if (controller.isLoggedIn()) {
+                cardLayout.show(cardPanel, panelName);
+            } else {
+                JOptionPane.showMessageDialog(this, "Login Please");
+                cardLayout.show(cardPanel, "Main Menu");
+            }
+        });
+    }
+
 }
 
 

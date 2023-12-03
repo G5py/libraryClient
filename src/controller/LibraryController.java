@@ -4,21 +4,26 @@ import applicationLogic.*;
 import dto.*;
 import entity.Book;
 import java.util.List;
-
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 public class LibraryController {
-    private static String userId = "";
-    public void setUserId(String userId)
-    {
-        this.userId = userId;
-    }
+
+    //임시 아이디 넣어놓음, 비로그인 상황 보고싶으면 비워둘 것
+    private String userId = "anyID";
+
+    public String getUserId() { return userId; }
+
+    public void setUserId(String userId) { this.userId = userId; }
+
+    //로그인 확인 메서드 - 로그인 상태라면 true, 아니라면 false 리턴
+    public boolean isLoggedIn() { return !userId.equals(""); }
+
     public boolean login(String id, String pw) {
         LoginManager loginManager = new LoginManager();
         boolean isLoginSuccess = true;
         //login 성공 or 실패에 대한 내부 로직, String id,pw를 사용
         //login에 성공한다면 isLoginSuccess에 true를, 실패한다면 false를 대입
-        if(isLoginSuccess==true)
+        if(isLoginSuccess)
         {
             setUserId(id);
         }
@@ -47,7 +52,7 @@ public class LibraryController {
         }
     }
 
-    public NonEditableModel addBookData() {
+    /*public NonEditableModel addBookData() {
         NonEditableModel model = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
         //DefaultTableModel을 수정한 클래스 NonEditableModel로 지정된 model 객체를 UI로 보내주는 메서드
         //아래는 샘플데이터로 실제로 구현할 때는 Repository의 Hashmap 정보를 String또는 Object으로 변환해 model.addRow로 한줄 씩 정보를 추가해줘야함
@@ -59,9 +64,9 @@ public class LibraryController {
         //model.addRow(new Object[]{"978-0-13-235088-4", "Clean Code", "Robert C. Martin", "Prentice Hall"});
         //model.addRow(new Object[]{"978-1-491-94765-0", "Java Concurrency in Practice", "Brian Goetz", "Addison-Wesley"});
         return model;
-    }
+    }*/
 
-    public boolean seachedBookExists(String name){
+    public boolean searchedBookExists(String name){
         boolean isSearchedBookExists = true;
 
         //검색결과 일치하는 도서명이 있는지 확인하는 메서드
@@ -73,28 +78,31 @@ public class LibraryController {
         int bookId;
         String name, writer, publisher;
         NonEditableModel model = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
-        BookSearcher bookSearcher = new BookSearcher();
+        /*BookSearcher bookSearcher = new BookSearcher();
         SearchedBooks searchedBooks = bookSearcher.search(bookName);
         List<Book> bookList = searchedBooks.getBooks();
-        for(int i=0;i<bookList.size();i++)
-        {
-            bookId = bookList.get(i).getNum();
-            name = bookList.get(i).getName();
-            writer = bookList.get(i).getWriter();
-            publisher = bookList.get(i).getPublisher();
+        for (Book book : bookList) {
+            bookId = book.getNum();
+            name = book.getName();
+            writer = book.getWriter();
+            publisher = book.getPublisher();
             String bookIdString = String.valueOf(bookId);
             model.addRow(new Object[]{bookIdString, name, writer, publisher});
-        }
+        }*/
         //가져온 BookRepository 데이터에서 도서명으로 검색하는 기능 구현
         //UI에선 위의 boolean 메서드로 검색한 책이 존재하는지 미리 판별 후, 존재한다면 이 메서드 실행
         //name으로 받아온 값을 기반으로 검색 수행, 일치하는 행이 있으면 searchModel.add로 위와 같이 row 추가
         //아래는 샘플데이터로 구현 완료되면 제거
-        //searchModel.addRow(new Object[]{"978-1-118-95119-2", "Beginning Java 8 Fundamentals", "Kishori Sharan", "Wrox"});
+        model.addRow(new Object[]{"978-1-118-95119-2", "Beginning Java 8 Fundamentals", "Kishori Sharan", "Wrox"});
+        model.addRow(new Object[]{"978-0-13-468599-1", "Effective Java", "Joshua Bloch", "Addison-Wesley"});
+        model.addRow(new Object[]{"978-0-59-600920-5", "Head First Java", "Kathy Sierra & Bert Bates", "O'Reilly Media"});
+        model.addRow(new Object[]{"978-0-13-235088-4", "Clean Code", "Robert C. Martin", "Prentice Hall"});
+        model.addRow(new Object[]{"978-1-491-94765-0", "Java Concurrency in Practice", "Brian Goetz", "Addison-Wesley"});
         return model;
     }
 
     public void borrowBook(String name){
-        if(userId.equals(""))
+        if(!isLoggedIn())
         {
             //return ...
         }
@@ -105,7 +113,7 @@ public class LibraryController {
     }
 
     public void returnBook(String name){
-        if(userId.equals(""))
+        if(!isLoggedIn())
         {
             //return ...
         }
@@ -116,14 +124,14 @@ public class LibraryController {
     }
 
     public NonEditableModel addBorrowedBookData() {
-        if(userId.equals(""))
+        if(!isLoggedIn())
         {
             NonEditableModel dummyModel = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
             return dummyModel;
         }
         BorrowedBookSearcher borrowedBookSearcher = new BorrowedBookSearcher();
         //에러걸리면 여기서부터 for문까지 전부 주석처리;
-        int bookId;
+        /*int bookId;
         String name, writer, publisher;
         NonEditableModel model = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
         BorrowedBooks borrowedBooks = borrowedBookSearcher.search(userId);
@@ -136,19 +144,19 @@ public class LibraryController {
             publisher = bookList.get(i).getPublisher();
             String bookIdString = String.valueOf(bookId);
             model.addRow(new Object[]{bookIdString, name, writer, publisher});
-        }
+        }*/
         //빌린 책 데이터 가져오는 메서드
         //Member 레포지토리의 키값 참조해서 가져오면 될듯
         //데이터 가져오는 메서드 구현이 완료되면 아래의 더미 데이터는 제거함
         //에러걸리면 여기 주석해제
-        //NonEditableModel model = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
-        //model.addRow(new Object[]{"978-0-13-468599-1", "Effective Java", "Joshua Bloch", "Addison-Wesley"});
-        //model.addRow(new Object[]{"978-0-59-600920-5", "Head First Java", "Kathy Sierra & Bert Bates", "O'Reilly Media"});
+        NonEditableModel model = new NonEditableModel(new Object[]{"고유번호", "도서명", "저자", "출판사"}, 0);
+        model.addRow(new Object[]{"978-0-13-468599-1", "Effective Java", "Joshua Bloch", "Addison-Wesley"});
+        model.addRow(new Object[]{"978-0-59-600920-5", "Head First Java", "Kathy Sierra & Bert Bates", "O'Reilly Media"});
         return model;
     }
 
     public int request(String book, String author, String publisher) {
-        if(userId.equals(""))
+        if(!isLoggedIn())
         {
             //return ...
         }
