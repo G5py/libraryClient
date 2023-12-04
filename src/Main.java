@@ -5,12 +5,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
-        LibraryController controller = new LibraryController();
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new LibraryCli(controller);
-            }
-        });
+        LibraryCli cli = new LibraryCli();
     }
     // Cli를 호출해야 함.
 }
