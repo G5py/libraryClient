@@ -19,7 +19,7 @@ public class BookHashmapRepository extends HashmapRepository<Integer, Book> {
 
     public void init(){
         for(int i=0;i<10;i++){
-            Book book=new Book(name.get(i),writer.get(i),publisher.get(i), i);
+            Book book=new Book(name.get(i),writer.get(i),publisher.get(i),date.get(i), i);
             hashMap.put(i,book);
         }
     }
@@ -32,7 +32,7 @@ public class BookHashmapRepository extends HashmapRepository<Integer, Book> {
             "최도영 글;김민우 그림","정경원 글;박우희 그림","고은지 글;왕지성 그림");
     List<String> publisher=Arrays.asList("다산어린이","문학동네","문학동네","노란상상","우리학교","우리학교"
             ,"우리학교","별숲","북멘토(도서출판)","북멘토(도서출판)");
-
+    List<String> date=Arrays.asList("","","","","","","","","","");
 
 
 }

@@ -49,13 +49,13 @@ public class LibraryController {
         return "미구현";
     }
 
-    public String returnBook(String name){
+    public String returnBook(String bookName){
         if(!isLoggedIn())
         {
             return "로그인 후 이용하세요";
         }
         BookReturnManager bookReturnManager = new BookReturnManager();
-        return "미구현";
+        return bookReturnManager.returnBook(bookName);
     }
 
     public BorrowedBooks searchBorrowedBook() {
