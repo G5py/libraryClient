@@ -33,11 +33,6 @@ public class LibraryController {
         return isRegisterSuccess;
     }
 
-    public boolean searchedBookExists(String name){
-        boolean isSearchedBookExists = true;
-        return isSearchedBookExists;
-    }
-
     public SearchedBooks searchBookByName(String bookName){
         BookSearcher bookSearcher = new BookSearcher();
         SearchedBooks searchedBooks = bookSearcher.search(bookName);
@@ -51,7 +46,7 @@ public class LibraryController {
             return "로그인 후 이용하세요";
         }
         BookBorrowManager bookBorrowManager = new BookBorrowManager();
-        return "대여 성공";
+        return "미구현";
     }
 
     public String returnBook(String name){
@@ -60,7 +55,7 @@ public class LibraryController {
             return "로그인 후 이용하세요";
         }
         BookReturnManager bookReturnManager = new BookReturnManager();
-        return "반환 성공";
+        return "미구현";
     }
 
     public BorrowedBooks searchBorrowedBook() {
@@ -69,13 +64,13 @@ public class LibraryController {
         return borrowedBooks;
     }
 
-    public int request(String book, String author, String publisher) {
+    public String request(String book, String author, String publisher) {
         if(!isLoggedIn())
         {
-            //return ...
+            return  "로그인 후 이용하세요";
         }
         BookRequestmanager bookRequestmanager = new BookRequestmanager();
-        return 1;
+        return "미구현";
     }
 
 }
