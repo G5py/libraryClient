@@ -7,14 +7,14 @@ public class BookRequest {
     private String writer;
     private String publisher;
     private String requesterId;
-    private Boolean accept;
+    private Boolean accept=false;
 
-    public BookRequest(String name, String writer, String publisher, String requesterId, Boolean accept) {
+    public BookRequest(String name, String writer, String publisher, String requesterId) {
         this.name = name;
         this.writer = writer;
         this.publisher = publisher;
         this.requesterId = requesterId;
-        this.accept = accept;
+
     }
 
     public String getName() {

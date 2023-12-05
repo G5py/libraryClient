@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookHashmapRepository extends HashmapRepository<Integer, Book> {
+    public BookHashmapRepository(){
+        init();
+    }
     public List<Book> findByName(String name) {
         List<Book> all = findAll();
         return all.stream()
