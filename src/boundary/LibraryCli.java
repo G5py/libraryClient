@@ -25,6 +25,7 @@ public class LibraryCli
         System.out.println("원하시는 항목을 선택하십시오.\n[1] 도서검색\n[2] 도서대출\n[3] 도서반납\n[4] 빌린도서목록조회\n[5] 책 요청\n[6] 로그인\n[7] 회원가입\n[8] 종료");
         System.out.print("입력 : ");
         int choice = scanner.nextInt();
+        scanner.nextLine();
         switch (choice) {
             case 1:
                 searchBook();
@@ -60,7 +61,7 @@ public class LibraryCli
     {
         String nameInput;
         System.out.print("책 이름 입력 : ");
-        nameInput = scanner.next();
+        nameInput = scanner.nextLine();
         SearchedBooks searchedBooks = libraryController.searchBookByName(nameInput);
         List<Book> bookList = searchedBooks.getBooks();
         printBooks(bookList);
@@ -69,7 +70,7 @@ public class LibraryCli
     {
         String nameInput;
         System.out.print("책 이름 입력 : ");
-        nameInput = scanner.next();
+        nameInput = scanner.nextLine();
         String message = libraryController.returnBook(nameInput);
         System.out.println(message);
     }
@@ -77,7 +78,7 @@ public class LibraryCli
     {
         String nameInput;
         System.out.print("책 이름 입력 : ");
-        nameInput = scanner.next();
+        nameInput = scanner.nextLine();
         String message = libraryController.borrowBook(nameInput);
         System.out.println(message);
     }
@@ -92,11 +93,11 @@ public class LibraryCli
     {
         String book, author, publisher, message;
         System.out.print("책이름 입력 : ");
-        book = scanner.next();
+        book = scanner.nextLine();
         System.out.print("작가 입력 : ");
-        author = scanner.next();
+        author = scanner.nextLine();
         System.out.print("출판사 입력 : ");
-        publisher = scanner.next();
+        publisher = scanner.nextLine();
         message = libraryController.request(book, author, publisher);
         System.out.println(message);
 
