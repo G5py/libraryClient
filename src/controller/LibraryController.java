@@ -2,9 +2,6 @@ package controller;
 
 import applicationLogic.*;
 import dto.*;
-import entity.Book;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 public class LibraryController {
 
@@ -69,7 +66,7 @@ public class LibraryController {
         {
             return  "로그인 후 이용하세요";
         }
-        BookRequestmanager bookRequestmanager = new BookRequestmanager();
+        BookRequestManager bookRequestmanager = new BookRequestManager();
         return "미구현";
     }
 

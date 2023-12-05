@@ -112,7 +112,7 @@ public class LibraryCli
         pw = scanner.next();
 
         boolean loginSuccess = libraryController.login(id,pw);
-        if(loginSuccess==true)
+        if(loginSuccess)
         {
             System.out.println("로그인 성공");
         }
