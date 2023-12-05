@@ -20,6 +20,7 @@ public class BookSearcher
     }
 
     public SearchedBooks search(String name) {
+        System.out.println("[debug] name : " + name);
         List<Book> books = bookRepository.findByName(name);
         return new SearchedBooks(books);
 

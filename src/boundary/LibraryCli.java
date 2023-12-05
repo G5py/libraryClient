@@ -149,7 +149,7 @@ public class LibraryCli
                 name = book.getName();
                 writer = book.getWriter();
                 publisher = book.getPublisher();
-                System.out.println("고유번호 : " + name + "이름 : " + bookId + "작가 : " + writer + "출판사 : " + publisher);
+                System.out.println("고유번호 : " + bookId + ", 이름 : " + name + ", 작가 : " + writer + ", 출판사 : " + publisher);
             }
         }
 }
