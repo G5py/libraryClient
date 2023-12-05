@@ -64,6 +64,11 @@ public class LibraryCli
         nameInput = scanner.nextLine();
         SearchedBooks searchedBooks = libraryController.searchBookByName(nameInput);
         List<Book> bookList = searchedBooks.getBooks();
+        if(bookList.size() == 0)
+        {
+            System.out.println("해당되는 책이 없습니다.");
+            return;
+        }
         printBooks(bookList);
     }
     public void returnBook()
@@ -107,9 +112,11 @@ public class LibraryCli
         String id, pw;
         System.out.print("id 입력 : ");
         id = scanner.next();
+        scanner.nextLine();
 
         System.out.print("pw 입력 : ");
         pw = scanner.next();
+        scanner.nextLine();
 
         boolean loginSuccess = libraryController.login(id,pw);
         if(loginSuccess==true)
@@ -126,9 +133,11 @@ public class LibraryCli
         String id, pw;
         System.out.print("id 입력 : ");
         id = scanner.next();
+        scanner.nextLine();
 
         System.out.print("pw 입력 : ");
         pw = scanner.next();
+        scanner.nextLine();
 
         int registerSuccessNum = libraryController.register(id,pw);
         switch(registerSuccessNum)
@@ -150,7 +159,7 @@ public class LibraryCli
                 name = book.getName();
                 writer = book.getWriter();
                 publisher = book.getPublisher();
-                System.out.println("고유번호 : " + bookId + ", 이름 : " + name + ", 작가 : " + writer + ", 출판사 : " + publisher);
+                System.out.println("[고유번호] : " + bookId + ", [이름] : " + name + ", [작가] : " + writer + ", [출판사] : " + publisher);
             }
         }
 }
