@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class HashmapRepository<K, T> implements Repository<K, T> {
-    protected HashMap<K, T> hashMap;
+    protected HashMap<K, T> hashMap=new HashMap<>();
     @Override
     public T save(K key, T entity) {
         return hashMap.put(key, entity);
