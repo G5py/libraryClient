@@ -4,6 +4,7 @@ import controller.LibraryController;
 import dto.BorrowedBooks;
 import dto.SearchedBooks;
 import entity.Book;
+import entity.RequestState;
 
 import java.util.List;
 import java.util.Scanner;
@@ -22,7 +23,7 @@ public class LibraryCli
     {
         while(true){
             System.out.println("------------------------------------------------------------");
-        System.out.println("원하시는 항목을 선택하십시오.\n[1] 도서검색\n[2] 도서대출\n[3] 도서반납\n[4] 빌린도서목록조회\n[5] 책 요청\n[6] 로그인\n[7] 회원가입\n[8] 종료");
+        System.out.println("원하시는 항목을 선택하십시오.\n[1] 도서검색\n[2] 도서대출\n[3] 도서반납\n[4] 빌린도서목록조회\n[5] 도서요청\n[6] 로그인\n[7] 회원가입\n[8] 종료");
         System.out.print("입력 : ");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -40,7 +41,7 @@ public class LibraryCli
                 displayBorrowedBook();
                 break;
             case 5:
-                request();
+                requestMenu();
                 break;
             case 6:
                 login();
@@ -91,10 +92,34 @@ public class LibraryCli
     {
         BorrowedBooks borrowedBooks = libraryController.searchBorrowedBook();
         List<Book> bookList = borrowedBooks.getBooks();
+        if(bookList.size() == 0)
+        {
+            System.out.println("빌린 책이 없습니다.");
+            return;
+        }
         printBooks(bookList);
     }
 
-    public void request()
+    public void requestMenu()
+    {
+        libraryController.showRequestAll();
+        System.out.println("------------------------------------------------------------");
+        System.out.println("원하시는 항목을 선택하십시오.\n[1] 책 요청\n[2] 요청된 책 승인");
+        System.out.print("입력 : ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        switch (choice) {
+            case 1:
+                requestBook();
+                break;
+            case 2:
+                acceptRequest();
+                break;
+            default:
+                return;
+        }
+    }
+    public void requestBook()
     {
         String book, author, publisher, message;
         System.out.print("책이름 입력 : ");
@@ -103,9 +128,31 @@ public class LibraryCli
         author = scanner.nextLine();
         System.out.print("출판사 입력 : ");
         publisher = scanner.nextLine();
-        message = libraryController.request(book, author, publisher,libraryController.getUserId());
+        message = libraryController.request(book, author, publisher);
         System.out.println(message);
-
+    }
+    public void acceptRequest()
+    {
+        int requestNum;
+        RequestState requestState = RequestState.WAITING;
+        System.out.print("요청번호 입력 : ");
+        requestNum = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("해당 요청의 승인여부를 설정해주세요.\n[1] 승인\n[2] 거부");
+        System.out.print("입력 : ");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        switch (choice) {
+            case 1:
+                requestState = RequestState.ACCEPT;
+                break;
+            case 2:
+                requestState = RequestState.REJECT;
+                break;
+            default:
+                return;
+        }
+        libraryController.requestAcception(1,requestState);
     }
     public void login()
     {
