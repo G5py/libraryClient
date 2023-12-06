@@ -37,4 +37,8 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
         return Member.getCODE().equals(code);
     }
 
+    public void addBorrowedBookKey(String userID, int bookID){
+        hashMap.get(userID).addBookList(bookID);
+    }
+
 }
