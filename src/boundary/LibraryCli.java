@@ -214,13 +214,13 @@ public class LibraryCli
     public void printRequests(List<BookRequest> bookRequests)
     {
         String name, writer, publisher,applicant,state;
-        for (BookRequest request : bookRequests) {
-            name = request.getName();
-            writer = request.getWriter();
-            publisher = request.getPublisher();
-            applicant = request.getRequesterId();
-            state = String.valueOf(request.getState());
-            System.out.println("[이름] : " + name + ", [작가] : " + writer + ", [출판사] : " + publisher + ", [신청자] : " + applicant + ", [상태] : " + state);
+        for (int i=0;i<bookRequests.size();i++) {
+            name = bookRequests.get(i).getName();
+            writer = bookRequests.get(i).getWriter();
+            publisher = bookRequests.get(i).getPublisher();
+            applicant = bookRequests.get(i).getRequesterId();
+            state = String.valueOf(bookRequests.get(i).getState());
+            System.out.println("["+i+"] "+ "[이름] : " + name + ", [작가] : " + writer + ", [출판사] : " + publisher + ", [신청자] : " + applicant + ", [상태] : " + state);
         }
     }
 }
