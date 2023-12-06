@@ -31,6 +31,4 @@ public class Member {
     public List<Integer> getBookList() {
         return bookList;
     }
-
-    public void addBookList(int bookID) { bookList.add(bookID); }
 }

@@ -42,9 +42,8 @@ public class BookBorrowManager {
         //book의 Date에 현재 시각 등록
         bookToBorrow.setDate(formattedTime);
         bookRepository.save(bookToBorrow.getNum(), bookToBorrow);
-        //Member에 빌리 책의 키값 등록
+        //Member에 빌린 책의 키값 등록, 널포인터 에러나면 아래 행 주석처리
         memberRepository.addBorrowedBookKey(userID, bookToBorrow.getNum());
-
         return "책 대출이 완료되었습니다.";
     }
 
