@@ -27,6 +27,7 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
     public boolean checkUsernameExists(String username) {
         return hashMap.containsKey(username);
     }
+
     public void setAuth(String id,boolean auth){
         hashMap.get(id).setAuth(auth);
     }
@@ -35,6 +36,10 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
     }
     public boolean checkAuthCode(String code){
         return Member.getCODE().equals(code);
+    }
+
+    public void addBorrowedBookKey(String userID, int bookID){
+        hashMap.get(userID).addBookList(bookID);
     }
 
 }
