@@ -54,7 +54,7 @@ public class LibraryController {
             return "로그인 후 이용하세요";
         }
         BookBorrowManager bookBorrowManager = new BookBorrowManager();
-        return "미구현";
+        return bookBorrowManager.borrowBook(name,userId);
     }
 
     public String returnBook(String bookName){
@@ -72,13 +72,13 @@ public class LibraryController {
         return borrowedBooks;
     }
 
-    public String request(String book, String author, String publisher,String userId) {
+    public String request(String book, String author, String publisher) {
         if(!isLoggedIn())
         {
             return  "로그인 후 이용하세요";
         }
         bookRequestmanager.saveBookRequest(book,author,publisher,userId);
-        return "미구현";
+        return "요청 성공";
     }
     public void showRequestAll(){
         List<BookRequest> list=bookRequestmanager.searchRequestAll();
@@ -100,6 +100,10 @@ public class LibraryController {
     }*/
     //권한이 있는경우, 도서 신청 승인 절차로 들어감.
     public void requestAcception(int key,RequestState state){
+        if(!isLoggedIn())
+        {
+            System.out.println("로그인 후 이용해주세요.");
+        }
         if(checkAuth(getUserId())){
             bookRequestmanager.requestAcception(key, state);
             System.out.println("승인했습니다.");
