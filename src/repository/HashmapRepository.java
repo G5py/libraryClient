@@ -4,7 +4,7 @@ package repository;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class HashmapRepository<K, T> implements Repository<K, T> {
     protected HashMap<K, T> hashMap=new HashMap<>();

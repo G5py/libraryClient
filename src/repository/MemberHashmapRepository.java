@@ -4,8 +4,6 @@ package repository;
 
 import entity.Member;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class MemberHashmapRepository extends HashmapRepository<String, Member> {
     private HashmapRepository<String,String> userCredentials;
@@ -36,10 +34,7 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
         return hashMap.get(id).getAuth();
     }
     public boolean checkAuthCode(String code){
-        if(Member.getCODE().equals(code)){
-            return true;
-        }
-        else return false;
+        return Member.getCODE().equals(code);
     }
 
 }
