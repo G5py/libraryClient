@@ -83,7 +83,8 @@ public class LibraryController {
     public void showRequestAll(){
         List<BookRequest> list=bookRequestmanager.searchRequestAll();
         for(int i=0;i<list.size();i++){
-            System.out.println(list);
+            System.out.println("책제목 : "+list.get(i).getName()+" 작가 : "+list.get(i).getWriter()+
+                    " 출판사 : "+list.get(i).getPublisher()+" 신청자 : " +list.get(i).getRequesterId()+" 승인 : "+list.get(i).getState() );
         }
     }
     /*public void showRequestByName(String name){
@@ -124,6 +125,4 @@ public class LibraryController {
         loginManager.setAuth(id,code);
 
     }
-
-
 }
