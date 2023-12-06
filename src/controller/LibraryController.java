@@ -103,8 +103,9 @@ public class LibraryController {
         if(!isLoggedIn())
         {
             System.out.println("로그인 후 이용해주세요.");
+
         }
-        if(checkAuth(getUserId())){
+        else if(checkAuth(getUserId())){
             bookRequestmanager.requestAcception(key, state);
             System.out.println("승인했습니다.");
         }
