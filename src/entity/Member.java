@@ -2,6 +2,7 @@
 
 package entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
@@ -14,7 +15,7 @@ public class Member {
     public Member(String id, String password, List<Integer> bookList) {
         this.id = id;
         this.password = password;
-        this.bookList = bookList;
+        this.bookList = new ArrayList<>();
     }
 
     public static String getCODE(){return CODE;}
