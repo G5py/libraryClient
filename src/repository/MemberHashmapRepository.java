@@ -4,28 +4,28 @@ package repository;
 
 import entity.Member;
 
+import java.util.Collections;
+
 
 public class MemberHashmapRepository extends HashmapRepository<String, Member> {
-    private HashmapRepository<String,String> userCredentials;
+
 
     public MemberHashmapRepository() {
-        userCredentials = new HashmapRepository<>();
-
-        userCredentials.save("aaa", "aaa1234");
-        userCredentials.save("bbb", "bbb1234");
+        //테스트용
+        hashMap.put("bbb", new Member("bbb","1234",Collections.emptyList()));
     }
 
     public boolean checkCredentials(String username, String password) {
-        return userCredentials.containsKey(username) && userCredentials.findByKey(username).equals(password);
+        return hashMap.containsKey(username) && hashMap.get(username).getPassword().equals(password);
     }
 
     // 사용자 추가
     public void addUser(String username, String password) {
-        userCredentials.save(username, password);
+        hashMap.put(username, new Member(username,password, Collections.emptyList()));
     }
 
     public boolean checkUsernameExists(String username) {
-        return userCredentials.containsKey(username);
+        return hashMap.containsKey(username);
     }
     public void setAuth(String id,boolean auth){
         hashMap.get(id).setAuth(auth);
