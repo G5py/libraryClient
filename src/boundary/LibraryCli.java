@@ -103,7 +103,7 @@ public class LibraryCli
         author = scanner.nextLine();
         System.out.print("출판사 입력 : ");
         publisher = scanner.nextLine();
-        message = libraryController.request(book, author, publisher);
+        message = libraryController.request(book, author, publisher,libraryController.getUserId());
         System.out.println(message);
 
     }

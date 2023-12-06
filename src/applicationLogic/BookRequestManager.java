@@ -19,10 +19,13 @@ public class BookRequestManager {
         return "success";
     }
     //리퀘스트 검색
-    public List<BookRequest> searchBookRequest(String name){
+    public List<BookRequest> searchRequestAll(){
+        return repository.findAll();
+    }
+    public List<BookRequest> searchRequestByName(String name){
         return repository.findByName(name);
     }
-    public List<BookRequest> searchById(String id){
+    public List<BookRequest> searchRequestById(String id){
         return repository.findById(id);
     }
 

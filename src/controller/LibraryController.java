@@ -2,8 +2,17 @@ package controller;
 
 import applicationLogic.*;
 import dto.*;
+import entity.BookRequest;
+
+import java.util.List;
 
 public class LibraryController {
+
+    private BookRequestManager bookRequestmanager;
+    public LibraryController(){
+        bookRequestmanager = new BookRequestManager();
+
+    }
 
     //임시 아이디 넣어놓음, 비로그인 상황 보고싶으면 비워둘 것
     private String userId = "";
@@ -61,13 +70,37 @@ public class LibraryController {
         return borrowedBooks;
     }
 
-    public String request(String book, String author, String publisher) {
+    public String request(String book, String author, String publisher,String userId) {
         if(!isLoggedIn())
         {
             return  "로그인 후 이용하세요";
         }
-        BookRequestManager bookRequestmanager = new BookRequestManager();
+        bookRequestmanager.saveBookRequest(book,author,publisher,userId);
         return "미구현";
     }
+    public void showRequestAll(){
+        List<BookRequest> list=bookRequestmanager.searchRequestAll();
+        for(int i=0;i<list.size();i++){
+            System.out.println(list);
+        }
+    }
+    public void showRequestByName(String name){
+        List<BookRequest> list=bookRequestmanager.searchRequestByName(name);
+        for(int i=0;i<list.size();i++){
+            System.out.println(list);
+        }
+    }
+    public void showRequestById(String Id){
+        List<BookRequest> list=bookRequestmanager.searchRequestByName(Id);
+        for(int i=0;i<list.size();i++){
+            System.out.println(list);
+        }
+    }
+    public boolean checkAuth(){
+     //미구현
+
+        return false;
+    }
+
 
 }

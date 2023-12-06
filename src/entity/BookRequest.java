@@ -7,7 +7,7 @@ public class BookRequest {
     private String writer;
     private String publisher;
     private String requesterId;
-    private Boolean accept=false;
+    private RequestState accept= RequestState.WAITING;
 
     public BookRequest(String name, String writer, String publisher, String requesterId) {
         this.name = name;
@@ -33,7 +33,10 @@ public class BookRequest {
         return requesterId;
     }
 
-    public Boolean getAccept() {
+    public RequestState getAccept() {
         return accept;
     }
+    public void setAccept(RequestState st){this.accept=st;}
+
 }
+
