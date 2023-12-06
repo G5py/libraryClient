@@ -1,6 +1,5 @@
 package repository;
 
-import entity.Book;
 import entity.BookRequest;
 import entity.RequestState;
 
@@ -13,10 +12,9 @@ public class BookRequestRepository extends HashmapRepository<Integer, BookReques
     }
     public List<BookRequest> findByName(String name){
         return findAll().stream().filter(n->n.getName().contains(name)).toList();
-
     }
     public void setAccept(int key,RequestState state){
-        hashMap.get(key).setAccept(state);
+        hashMap.get(key).setState(state);
     }
 
 }

@@ -27,6 +27,7 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
     public boolean checkUsernameExists(String username) {
         return userCredentials.containsKey(username);
     }
+
     public void setAuth(String id,boolean auth){
         hashMap.get(id).setAuth(auth);
     }
