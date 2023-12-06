@@ -4,6 +4,7 @@ import controller.LibraryController;
 import dto.BorrowedBooks;
 import dto.SearchedBooks;
 import entity.Book;
+import entity.BookRequest;
 import entity.RequestState;
 
 import java.util.List;
@@ -102,7 +103,8 @@ public class LibraryCli
 
     public void requestMenu()
     {
-        libraryController.showRequestAll();
+        List<BookRequest> bookRequests = libraryController.searchAllRequest();
+        printRequests(bookRequests);
         System.out.println("------------------------------------------------------------");
         System.out.println("원하시는 항목을 선택하십시오.\n[1] 책 요청\n[2] 요청된 책 승인");
         System.out.print("입력 : ");
@@ -209,4 +211,16 @@ public class LibraryCli
                 System.out.println("[고유번호] : " + bookId + ", [이름] : " + name + ", [작가] : " + writer + ", [출판사] : " + publisher);
             }
         }
+    public void printRequests(List<BookRequest> bookRequests)
+    {
+        String name, writer, publisher,applicant,state;
+        for (BookRequest request : bookRequests) {
+            name = request.getName();
+            writer = request.getWriter();
+            publisher = request.getPublisher();
+            applicant = request.getRequesterId();
+            state = String.valueOf(request.getState());
+            System.out.println("[이름] : " + name + ", [작가] : " + writer + ", [출판사] : " + publisher + ", [신청자] : " + applicant + ", [상태] : " + state);
+        }
+    }
 }

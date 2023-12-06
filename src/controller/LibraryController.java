@@ -80,12 +80,9 @@ public class LibraryController {
         bookRequestmanager.saveBookRequest(book,author,publisher,userId);
         return "요청 성공";
     }
-    public void showRequestAll(){
-        List<BookRequest> list=bookRequestmanager.searchRequestAll();
-        for(int i=0;i<list.size();i++){
-            System.out.println("책제목 : "+list.get(i).getName()+" 작가 : "+list.get(i).getWriter()+
-                    " 출판사 : "+list.get(i).getPublisher()+" 신청자 : " +list.get(i).getRequesterId()+" 승인 : "+list.get(i).getState() );
-        }
+    public List<BookRequest> searchAllRequest(){
+        List<BookRequest> bookRequests=bookRequestmanager.searchRequestAll();
+        return bookRequests;
     }
     /*public void showRequestByName(String name){
         List<BookRequest> list=bookRequestmanager.searchRequestByName(name);
