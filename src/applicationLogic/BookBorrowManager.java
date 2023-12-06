@@ -35,7 +35,7 @@ public class BookBorrowManager {
         bookToBorrow.setDate("20231206");
         bookRepository.save(bookToBorrow.getNum(), bookToBorrow);
         //memberRepository.save(userID, );
-        return "책 반납이 완료되었습니다.";
+        return "책 대출이 완료되었습니다.";
     }
 
 

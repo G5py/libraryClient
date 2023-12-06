@@ -54,7 +54,7 @@ public class LibraryController {
             return "로그인 후 이용하세요";
         }
         BookBorrowManager bookBorrowManager = new BookBorrowManager();
-        return "미구현";
+        return bookBorrowManager.borrowBook(name,userId);
     }
 
     public String returnBook(String bookName){
