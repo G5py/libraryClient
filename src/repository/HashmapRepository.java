@@ -25,5 +25,7 @@ public class HashmapRepository<K, T> implements Repository<K, T> {
         return hashMap.get(key);
     }
 
+    public boolean containsKey(K key) {return hashMap.containsKey(key);}
+
 
 }

@@ -8,22 +8,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MemberHashmapRepository extends HashmapRepository<String, Member> {
-    private Map<String, String> userCredentials;
+    private HashmapRepository<String,String> userCredentials;
 
     public MemberHashmapRepository() {
-        userCredentials = new HashMap<>();
+        userCredentials = new HashmapRepository<>();
 
-        userCredentials.put("aaa", "aaa1234");
-        userCredentials.put("bbb", "bbb1234");
+        userCredentials.save("aaa", "aaa1234");
+        userCredentials.save("bbb", "bbb1234");
     }
 
     public boolean checkCredentials(String username, String password) {
-        return userCredentials.containsKey(username) && userCredentials.get(username).equals(password);
+        return userCredentials.containsKey(username) && userCredentials.findByKey(username).equals(password);
     }
 
     // 사용자 추가
     public void addUser(String username, String password) {
-        userCredentials.put(username, password);
+        userCredentials.save(username, password);
     }
 
     public boolean checkUsernameExists(String username) {
