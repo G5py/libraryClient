@@ -3,12 +3,14 @@ package controller;
 import applicationLogic.*;
 import dto.*;
 import entity.BookRequest;
+import entity.Member;
+import entity.RequestState;
 
 import java.util.List;
 
 public class LibraryController {
 
-    private BookRequestManager bookRequestmanager;
+    private final BookRequestManager bookRequestmanager;
     public LibraryController(){
         bookRequestmanager = new BookRequestManager();
 
@@ -66,7 +68,7 @@ public class LibraryController {
 
     public BorrowedBooks searchBorrowedBook() {
         BorrowedBookSearcher borrowedBookSearcher = new BorrowedBookSearcher();
-        BorrowedBooks borrowedBooks = borrowedBookSearcher.search(userId);
+        BorrowedBooks borrowedBooks = borrowedBookSearcher.search(getUserId());
         return borrowedBooks;
     }
 
@@ -84,22 +86,38 @@ public class LibraryController {
             System.out.println(list);
         }
     }
-    public void showRequestByName(String name){
+    /*public void showRequestByName(String name){
         List<BookRequest> list=bookRequestmanager.searchRequestByName(name);
         for(int i=0;i<list.size();i++){
             System.out.println(list);
         }
     }
     public void showRequestById(String Id){
-        List<BookRequest> list=bookRequestmanager.searchRequestByName(Id);
+        List<BookRequest> list=bookRequestmanager.searchRequestById(Id);
         for(int i=0;i<list.size();i++){
             System.out.println(list);
         }
+    }*/
+    //권한이 있는경우, 도서 신청 승인 절차로 들어감.
+    public void requestAcception(int key,RequestState state){
+        if(checkAuth(getUserId())){
+            bookRequestmanager.requestAcception(key, state);
+            System.out.println("승인했습니다.");
+        }
+        else
+            System.out.println("권한이 없습니다.");
     }
-    public boolean checkAuth(){
+    //사용자의 권한을 확인
+    public boolean checkAuth(String id){
      //미구현
+        LoginManager loginManager=new LoginManager();
+        return loginManager.checkAuth(id);
+    }
+    //static으로 저장되어있는 코드를 입력하면 권한을 허가로 변경
+    public void setAuth(String id, String code){
+        LoginManager loginManager=new LoginManager();
+        loginManager.setAuth(id,code);
 
-        return false;
     }
 
 

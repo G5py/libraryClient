@@ -1,6 +1,7 @@
 package applicationLogic;
 
 import entity.BookRequest;
+import entity.RequestState;
 import repository.BookRequestRepository;
 import repository.RepositoryManager;
 
@@ -22,13 +23,17 @@ public class BookRequestManager {
     public List<BookRequest> searchRequestAll(){
         return repository.findAll();
     }
-    public List<BookRequest> searchRequestByName(String name){
+/*    public List<BookRequest> searchRequestByName(String name){
         return repository.findByName(name);
     }
     public List<BookRequest> searchRequestById(String id){
         return repository.findById(id);
-    }
+    }*/
 
+    public void requestAcception(int key, RequestState state){
+        repository.setAccept(key,state);
+
+    }
 
 
 

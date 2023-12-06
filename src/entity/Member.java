@@ -7,7 +7,9 @@ import java.util.List;
 public class Member {
     private String id;
     private String password;
+    private boolean auth= false;
     private List<Integer> bookList;
+    private static String CODE="authCheck";
 
     public Member(String id, String password, List<Integer> bookList) {
         this.id = id;
@@ -15,6 +17,9 @@ public class Member {
         this.bookList = bookList;
     }
 
+    public static String getCODE(){return CODE;}
+    public boolean getAuth(){return auth;}
+    public void setAuth(boolean auth){this.auth=auth;}
     public String getId() {
         return id;
     }

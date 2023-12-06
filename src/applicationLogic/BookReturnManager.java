@@ -9,10 +9,10 @@ import java.util.List;
 
 public class BookReturnManager {
     private BookHashmapRepository bookRepository;
-    private final MemberHashmapRepository memberRepository;
+
     public BookReturnManager() {
         this.bookRepository   = RepositoryManager.getBookHashmapRepository();
-        this.memberRepository = RepositoryManager.getMemberHashmapRepository();
+
     }
     public String returnBook(String bookName) {
         List<Book> books=bookRepository.findByName(bookName);
