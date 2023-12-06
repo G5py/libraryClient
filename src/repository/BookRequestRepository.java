@@ -7,6 +7,7 @@ import java.util.List;
 
 public class BookRequestRepository extends HashmapRepository<Integer, BookRequest>{
 
+
     public List<BookRequest> findById(String id){
         return findAll().stream().filter(n->n.getRequesterId().equals(id)).toList();
     }
@@ -16,5 +17,7 @@ public class BookRequestRepository extends HashmapRepository<Integer, BookReques
     public void setAccept(int key,RequestState state){
         hashMap.get(key).setState(state);
     }
-
+    public int returnSize(){
+        return hashMap.size();
+    }
 }
