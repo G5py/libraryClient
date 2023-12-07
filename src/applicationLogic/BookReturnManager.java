@@ -26,7 +26,7 @@ public class BookReturnManager {
         }
 
         //책 상태 업데이트  날짜 사용하려면 import java.util.Date;사용 필요
-        bookToReturn.setDate("20231204");
+        bookToReturn.setDate("");
         bookRepository.save(bookToReturn.getNum(), bookToReturn);
         return "책 반납이 완료되었습니다.";
     }
