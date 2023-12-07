@@ -7,6 +7,7 @@ import entity.Book;
 import entity.BookRequest;
 import entity.RequestState;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 public class LibraryCli
@@ -26,7 +27,12 @@ public class LibraryCli
             System.out.println("------------------------------------------------------------");
         System.out.println("원하시는 항목을 선택하십시오.\n[1] 도서검색\n[2] 도서대출\n[3] 도서반납\n[4] 빌린도서목록조회\n[5] 도서요청\n[6] 로그인\n[7] 회원가입\n[8] 종료");
         System.out.print("입력 : ");
-        int choice = scanner.nextInt();
+        int choice=0;
+        try{
+            choice= scanner.nextInt();
+        }catch (InputMismatchException e) {
+            System.out.println("올바른 정수를 입력하세요.");
+        }
         scanner.nextLine();
         switch (choice) {
             case 1:
