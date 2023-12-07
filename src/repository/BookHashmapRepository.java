@@ -18,12 +18,6 @@ public class BookHashmapRepository extends HashmapRepository<Integer, Book> {
                 .filter(x -> x.getName().contains(name))
                 .toList();
     }
-    public List<Book> getByName(String name){
-        List<Book> all = findAll();
-        return all.stream()
-                .filter(x -> x.getName().equals(name)).toList();
-    }
-
 
     public void init(){
         for(int i=0;i<10;i++){
