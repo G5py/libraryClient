@@ -73,7 +73,7 @@ public class LibraryCli
         nameInput = scanner.nextLine();
         SearchedBooks searchedBooks = libraryController.searchBookByName(nameInput);
         List<Book> bookList = searchedBooks.getBooks();
-        if(bookList.size() == 0)
+        if(bookList.isEmpty())
         {
             System.out.println("해당되는 책이 없습니다.");
             return;
@@ -103,7 +103,7 @@ public class LibraryCli
     {
         BorrowedBooks borrowedBooks = libraryController.searchBorrowedBook();
         List<Book> bookList = borrowedBooks.getBooks();
-        if(bookList.size() == 0)
+        if(bookList.isEmpty())
         {
             System.out.println("빌린 책이 없습니다.");
             return;
