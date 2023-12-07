@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 public class LibraryCli
 {
-    LibraryController libraryController = new LibraryController();
-    Scanner scanner = new Scanner(System.in);
+    private LibraryController libraryController = new LibraryController();
+    private Scanner scanner = new Scanner(System.in);
 
     public LibraryCli()
     {
@@ -65,7 +65,8 @@ public class LibraryCli
             }
         }
     }
-    public void searchBook()
+    
+    private void searchBook()
     {
         String nameInput;
         System.out.print("책 이름 입력 : ");
@@ -79,7 +80,8 @@ public class LibraryCli
         }
         printBooks(bookList);
     }
-    public void returnBook()
+    
+    private void returnBook()
     {
         String nameInput;
         System.out.print("책 이름 입력 : ");
@@ -87,7 +89,8 @@ public class LibraryCli
         String message = libraryController.returnBook(nameInput);
         System.out.println(message);
     }
-    public void borrowBook()
+    
+    private void borrowBook()
     {
         String nameInput;
         System.out.print("책 이름 입력 : ");
@@ -95,7 +98,8 @@ public class LibraryCli
         String message = libraryController.borrowBook(nameInput);
         System.out.println(message);
     }
-    public void displayBorrowedBook()
+    
+    private void displayBorrowedBook()
     {
         BorrowedBooks borrowedBooks = libraryController.searchBorrowedBook();
         List<Book> bookList = borrowedBooks.getBooks();
@@ -107,7 +111,7 @@ public class LibraryCli
         printBooks(bookList);
     }
 
-    public void requestMenu()
+    private void requestMenu()
     {
         List<BookRequest> bookRequests = libraryController.searchAllRequest();
         printRequests(bookRequests);
@@ -127,7 +131,8 @@ public class LibraryCli
                 return;
         }
     }
-    public void requestBook()
+    
+    private void requestBook()
     {
         String book, author, publisher, message;
         System.out.print("책이름 입력 : ");
@@ -139,7 +144,8 @@ public class LibraryCli
         message = libraryController.request(book, author, publisher);
         System.out.println(message);
     }
-    public void acceptRequest()
+    
+    private void acceptRequest()
     {
         int requestNum;
         RequestState requestState = RequestState.WAITING;
@@ -162,7 +168,8 @@ public class LibraryCli
         }
         libraryController.requestAcception(1,requestState);
     }
-    public void login()
+    
+    private void login()
     {
         String id, pw;
         System.out.print("id 입력 : ");
@@ -183,7 +190,8 @@ public class LibraryCli
             System.out.println("로그인 실패");
         }
     }
-    public void register()
+    
+    private void register()
     {
         String id, pw;
         System.out.print("id 입력 : ");
@@ -205,7 +213,8 @@ public class LibraryCli
                 return;
         }
     }
-    public void printBooks(List<Book> books)
+    
+    private void printBooks(List<Book> books)
         {
             int bookId;
             String name, writer, publisher;
@@ -217,7 +226,8 @@ public class LibraryCli
                 System.out.println("[고유번호] : " + bookId + ", [이름] : " + name + ", [작가] : " + writer + ", [출판사] : " + publisher);
             }
         }
-    public void printRequests(List<BookRequest> bookRequests)
+    
+    private void printRequests(List<BookRequest> bookRequests)
     {
         String name, writer, publisher,applicant,state;
         for (int i=0;i<bookRequests.size();i++) {
