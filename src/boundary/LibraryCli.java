@@ -114,8 +114,10 @@ public class LibraryCli
 
     private void requestMenu()
     {
-        RequestedBooks bookRequests = libraryController.searchAllRequest();
-        printRequests(bookRequests.getBooks());
+        RequestedBooks requestedBooks = libraryController.searchAllRequest();
+        List<BookRequest> bookRequests = requestedBooks.getBooks();
+
+        printRequests(bookRequests);
         System.out.println("------------------------------------------------------------");
         System.out.println("원하시는 항목을 선택하십시오.\n[1] 책 요청\n[2] 요청된 책 승인");
         System.out.print("입력 : ");
