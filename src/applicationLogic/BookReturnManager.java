@@ -25,7 +25,6 @@ public class BookReturnManager {
             return "해당 책은 대출되어 있지 않습니다.";
         }
 
-        //책 상태 업데이트  날짜 사용하려면 import java.util.Date;사용 필요
         bookToReturn.setDate("");
         bookRepository.save(bookToReturn.getNum(), bookToReturn);
         return "책 반납이 완료되었습니다.";
