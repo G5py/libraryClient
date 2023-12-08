@@ -11,7 +11,6 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
 
 
     public MemberHashmapRepository() {
-        //테스트용
         hashMap.put("bbb", new Member("bbb","1234",Collections.emptyList()));
     }
 
