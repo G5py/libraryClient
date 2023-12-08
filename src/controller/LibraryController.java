@@ -105,7 +105,12 @@ public class LibraryController {
         }
         else if(checkAuth(getUserId())){
             bookRequestmanager.requestAcception(key, state);
-            System.out.println("승인했습니다.");
+            if(state.equals(RequestState.ACCEPT)){
+                System.out.println("승인했습니다.");
+            }
+            else if(state.equals(RequestState.REJECT)){
+                System.out.println("거부되었습니다.");
+            }
         }
         else
             System.out.println("권한이 없습니다.");

@@ -121,7 +121,12 @@ public class LibraryCli
         System.out.println("------------------------------------------------------------");
         System.out.println("원하시는 항목을 선택하십시오.\n[1] 책 요청\n[2] 요청된 책 승인");
         System.out.print("입력 : ");
-        int choice = scanner.nextInt();
+        int choice=0;
+        try{
+            choice= scanner.nextInt();
+        }catch (InputMismatchException e) {
+            System.out.println("올바른 정수를 입력하세요.");
+        }
         scanner.nextLine();
         switch (choice) {
             case 1:
@@ -157,7 +162,12 @@ public class LibraryCli
         scanner.nextLine();
         System.out.println("해당 요청의 승인여부를 설정해주세요.\n[1] 승인\n[2] 거부");
         System.out.print("입력 : ");
-        int choice = scanner.nextInt();
+        int choice =0;
+        try{
+            choice= scanner.nextInt();
+        }catch (InputMismatchException e) {
+            System.out.println("올바른 정수를 입력하세요.");
+        }
         scanner.nextLine();
         switch (choice) {
             case 1:
