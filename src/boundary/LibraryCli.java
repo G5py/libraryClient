@@ -2,6 +2,7 @@ package boundary;
 
 import controller.LibraryController;
 import dto.BorrowedBooks;
+import dto.RequestedBooks;
 import dto.SearchedBooks;
 import entity.Book;
 import entity.BookRequest;
@@ -113,8 +114,8 @@ public class LibraryCli
 
     private void requestMenu()
     {
-        List<BookRequest> bookRequests = libraryController.searchAllRequest();
-        printRequests(bookRequests);
+        RequestedBooks bookRequests = libraryController.searchAllRequest();
+        printRequests(bookRequests.getBooks());
         System.out.println("------------------------------------------------------------");
         System.out.println("원하시는 항목을 선택하십시오.\n[1] 책 요청\n[2] 요청된 책 승인");
         System.out.print("입력 : ");

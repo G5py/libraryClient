@@ -11,7 +11,7 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
 
     public MemberHashmapRepository() {
         hashMap.put("bbb", new Member("bbb","1234",Collections.emptyList()));
-        hashMap.get(0).setAuth(true);
+        hashMap.get("bbb").setAuth(true);
     }
 
     public boolean checkCredentials(String username, String password) {
