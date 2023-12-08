@@ -116,10 +116,5 @@ public class LibraryController {
         LoginManager loginManager=new LoginManager();
         return loginManager.checkAuth(id);
     }
-    //static으로 저장되어있는 코드를 입력하면 권한을 허가로 변경
-    public void setAuth(String id, String code){
-        LoginManager loginManager=new LoginManager();
-        loginManager.setAuth(id,code);
 
-    }
 }
