@@ -21,12 +21,11 @@ public class BookReturnManager {
         }
         Book bookToReturn=books.get(0);
 
-        if(bookToReturn.getDate()==""){
+        if(bookToReturn.getDate().isEmpty()){
             return "해당 책은 대출되어 있지 않습니다.";
         }
 
         bookToReturn.setDate("");
-        bookRepository.save(bookToReturn.getNum(), bookToReturn);
         return "책 반납이 완료되었습니다.";
     }
 
