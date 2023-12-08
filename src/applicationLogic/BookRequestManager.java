@@ -17,7 +17,7 @@ public class BookRequestManager {
     //리퀘스트 등록
     public void saveBookRequest(String name,String writer, String publisher, String id){
         BookRequest bookRequest=new BookRequest(name,writer,publisher,id);
-        repository.save(repository.returnSize(),bookRequest);
+        repository.save(bookRequest);
     }
     //리퀘스트 검색
     public RequestedBooks searchRequestAll(){

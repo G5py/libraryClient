@@ -3,10 +3,17 @@ package repository;
 import entity.BookRequest;
 import entity.RequestState;
 
+
 import java.util.List;
 
 public class BookRequestRepository extends HashmapRepository<Integer, BookRequest>{
 
+
+    public BookRequest save( BookRequest entity) {
+        System.out.println(hashMap.size());
+        return hashMap.put(hashMap.size(), entity);
+
+    }
 
     public List<BookRequest> findById(String id){
         return findAll().stream().filter(n->n.getRequesterId().equals(id)).toList();

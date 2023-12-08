@@ -167,7 +167,12 @@ public class LibraryCli
             default:
                 return;
         }
-        libraryController.requestAcception(1,requestState);
+        try {
+            libraryController.requestAcception(requestNum,requestState);
+        }catch (NullPointerException e){
+            System.out.println("없는 요청 번호입니다.");
+        }
+
     }
     
     private void login()
