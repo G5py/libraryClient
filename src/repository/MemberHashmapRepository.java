@@ -9,9 +9,9 @@ import java.util.Collections;
 
 public class MemberHashmapRepository extends HashmapRepository<String, Member> {
 
-
     public MemberHashmapRepository() {
         hashMap.put("bbb", new Member("bbb","1234",Collections.emptyList()));
+        hashMap.get(0).setAuth(true);
     }
 
     public boolean checkCredentials(String username, String password) {
@@ -27,14 +27,9 @@ public class MemberHashmapRepository extends HashmapRepository<String, Member> {
         return hashMap.containsKey(username);
     }
 
-    public void setAuth(String id,boolean auth){
-        hashMap.get(id).setAuth(auth);
-    }
+
     public boolean getAuth(String id) {
         return hashMap.get(id).getAuth();
-    }
-    public boolean checkAuthCode(String code){
-        return Member.getCODE().equals(code);
     }
 
     public void addBorrowedBookKey(String userID, int bookID){
