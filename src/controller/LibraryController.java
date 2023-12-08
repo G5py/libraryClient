@@ -80,8 +80,8 @@ public class LibraryController {
         bookRequestmanager.saveBookRequest(book,author,publisher,userId);
         return "요청 성공";
     }
-    public List<BookRequest> searchAllRequest(){
-        List<BookRequest> bookRequests=bookRequestmanager.searchRequestAll();
+    public RequestedBooks searchAllRequest(){
+        RequestedBooks bookRequests=bookRequestmanager.searchRequestAll();
         return bookRequests;
     }
     /*public void showRequestByName(String name){

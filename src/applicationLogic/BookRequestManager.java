@@ -1,5 +1,6 @@
 package applicationLogic;
 
+import dto.RequestedBooks;
 import entity.BookRequest;
 import entity.RequestState;
 import repository.BookRequestRepository;
@@ -14,14 +15,13 @@ public class BookRequestManager {
     }
 
     //리퀘스트 등록
-    public String saveBookRequest(String name,String writer, String publisher, String id){
+    public void saveBookRequest(String name,String writer, String publisher, String id){
         BookRequest bookRequest=new BookRequest(name,writer,publisher,id);
         repository.save(repository.returnSize(),bookRequest);
-        return "success";
     }
     //리퀘스트 검색
-    public List<BookRequest> searchRequestAll(){
-        return repository.findAll();
+    public RequestedBooks searchRequestAll(){
+        return new RequestedBooks(repository.findAll());
     }
 /*    public List<BookRequest> searchRequestByName(String name){
         return repository.findByName(name);

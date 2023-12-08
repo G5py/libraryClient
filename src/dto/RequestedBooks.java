@@ -1,17 +1,18 @@
 package dto;
 
 import entity.Book;
+import entity.BookRequest;
 
 import java.util.List;
 
 public class RequestedBooks {
-    private List<RequestedBooks> requestedBooks;
+    private List<BookRequest> requestedBooks;
 
-    public RequestedBooks(List<RequestedBooks> books) {
+    public RequestedBooks(List<BookRequest> books) {
         this.requestedBooks = books;
     }
 
-    public List<RequestedBooks> getBooks() {
+    public List<BookRequest> getBooks() {
         return requestedBooks;
     }
 }
