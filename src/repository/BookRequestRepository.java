@@ -10,7 +10,6 @@ public class BookRequestRepository extends HashmapRepository<Integer, BookReques
 
 
     public BookRequest save( BookRequest entity) {
-        System.out.println(hashMap.size());
         return hashMap.put(hashMap.size(), entity);
 
     }
